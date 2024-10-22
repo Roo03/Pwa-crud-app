@@ -41,7 +41,7 @@ export default function Menu() {
     <main className="container mx-auto px-4 py-10 max-w-7xl">
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-indigo-700 text-center">Empleados</h1>
 
-      <p className="text-lg sm:text-xl text-indigo-600 text-center mb-8">
+      <p className="text-lg sm:text-xl text-gray-600 text-center mb-8">
         Registra a los nuevos integrantes de la familia
       </p>
 

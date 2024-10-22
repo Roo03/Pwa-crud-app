@@ -24,7 +24,7 @@ export default function Home() {
         <p className="text-lg sm:text-xl">
           administra los nuevos, cambia datos y elimina a empleados 
         </p>
-        <button onClick={handleStart} className="bg-orange-500 text-white px-6 py-3 rounded-lg mt-8 hover:bg-orange-400 transition duration-300 ease-in-out">
+        <button onClick={handleStart} className="bg-blue-500 text-white px-6 py-3 rounded-lg mt-8 hover:bg-blue-400 transition duration-300 ease-in-out">
           Comenzar
         </button>
       </main>

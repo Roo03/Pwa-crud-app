@@ -16,7 +16,7 @@ const useEmployee = () => {
           setRecipes(JSON.parse(cachedRecipes));
         }
 
-        const response = await fetch('http://localhost:3000/api/empleados/');
+        const response = await fetch('http://localhost:3000/api/empleados');
         
         if (!response.ok) {
           throw new Error('Error al obtener los empleados');
