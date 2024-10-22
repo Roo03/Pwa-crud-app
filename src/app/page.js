@@ -14,6 +14,7 @@ export default function Home() {
         <title>microsoft employees</title>
         <meta name="description" content="A catchy description of the app" />
       </Head>
+      <div></div>
       <header className="mb-6">
         <h1 className="text-4xl font-bold text-center sm:text-5xl">Microsoft Employees</h1>
       </header>

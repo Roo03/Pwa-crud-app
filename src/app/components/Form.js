@@ -75,7 +75,7 @@ const Form = ({ onSuccess, employeeToEdit }) => {
         <button
         type="submit"
         disabled={isCreating}
-        className="bg-blue-500 text-white p-2 rounded-lg hover:bg-orange-400 transition duration-300 ease-in-out"
+        className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-400 transition duration-300 ease-in-out"
       >
         {isCreating ? "Cargando..." : "Registrar empleado"}
       </button>
