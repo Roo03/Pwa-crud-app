@@ -1,4 +1,4 @@
-import Deleteemloyee from "./deleteEmployee";
+import DeleteEmployee from "./deleteEmployee";
 
 const Cards = ({
   nombre,
@@ -14,15 +14,16 @@ const Cards = ({
 
       <div className="mt-4 flex gap-4">
         <button
-          onClick={() => onEdit({ id, nombre, puesto })}
+          onClick={() => onEdit({ id, nombre, puesto })} // Pasa el objeto de empleado completo
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
         >
           Editar
         </button>
-        <Deleteemloyee id={id} onDelete={onDelete} />
+        <DeleteEmployee id={id} onDelete={onDelete} />
       </div>
     </div>
   );
 };
 
 export default Cards;
+

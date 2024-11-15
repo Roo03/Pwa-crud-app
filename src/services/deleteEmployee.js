@@ -8,7 +8,7 @@ export default function useDeleteemployee() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`https://api-empleados-production.up.railway.app/api/empleados/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/empleados/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
