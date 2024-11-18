@@ -8,7 +8,7 @@ export default function useEditEmployee() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:3000/api/empleados/${id}`, {
+      const response = await fetch(`api-empleados-production.up.railway.app${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
