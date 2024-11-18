@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { getToken, onMessage } from "firebase/messaging";
-import { messaging } from "@/firebase";
+import Push from "push.js";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import Push from "push.js";
 
 export default function Home() {
   const router = useRouter();
@@ -12,22 +10,19 @@ export default function Home() {
   const steps = [
     {
       title: "Bienvenido",
-      description:
-        "Empieza con la administracion de nuestros empleados para obtener un manejo de estos",
+      description: "Empieza con la administracion de nuestros empleados para obtener un manejo de estos",
       buttonText: "Siguiente",
       imageUrl: "/assets/img/imagen1.jpg",
     },
     {
       title: "Registra",
-      description:
-        "Administra a los nuevos empleados que entran a nuestra familia",
+      description: "Administra a los nuevos empleados que entran a nuestra familia",
       buttonText: "Siguiente",
       imageUrl: "/assets/img/imagen2.jpg",
     },
     {
       title: "Administra",
-      description:
-        "Ten en tu poder la capacidad de manejar los datos o eliminacion de estos",
+      description: "Ten en tu poder la capacidad de manejar los datos o eliminacion de estos",
       buttonText: "Comenzar",
       imageUrl: "/assets/img/imagen3.jpg",
     },
@@ -35,34 +30,26 @@ export default function Home() {
 
   const activarMensajes = async () => {
     try {
-      Push.Permission.request(
-        async () => {
-          // Permiso concedido
-          Push.create("Bienvenido a Horizon ETP", {
-            body: "Gracias por su cooperación con nosotros",
-            icon: "/assets/img/notificacion.png",
-            timeout: 5000,
-            onClick: function () {
-              window.focus();
-              this.close();
-            },
-          });
-
-          const token = await getToken(messaging, {
-            vapidKey:
-              "BM2uJMs_b58PPOAp5ZNMSX1opNRtQwF8Gi7TAy94KCw7hTFbLL618_hxpazaErohbWJzJJtpsROOa-MJxnJUqGM",
-          });
-
-          if (token) {
-            console.log("Token generado:", token);
-          } else {
-            console.error("No se pudo generar el token.");
+      if (typeof window !== "undefined" && navigator) {
+        // Solo ejecutar en el cliente
+        Push.Permission.request(
+          async () => {
+            // Permiso concedido
+            Push.create("Bienvenido a Horizon ETP", {
+              body: "Gracias por su cooperación con nosotros",
+              icon: "/assets/img/notificacion.png",
+              timeout: 5000,
+              onClick: function () {
+                window.focus();
+                this.close();
+              },
+            });
+          },
+          () => {
+            console.warn("Permiso de notificaciones denegado.");
           }
-        },
-        () => {
-          console.warn("Permiso de notificaciones denegado.");
-        }
-      );
+        );
+      }
     } catch (error) {
       console.error("Error al activar las notificaciones:", error);
     }
@@ -93,27 +80,17 @@ export default function Home() {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-50"></div>{" "}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
       <Head>
-        <title classNameassName="mb-6 z-10 flex justify-end">
-          Horizon enterprise
-        </title>
-        <meta
-          name="description"
-          content="Una descripción atractiva de la aplicación"
-        />
+        <title>Horizon enterprise</title>
+        <meta name="description" content="Una descripción atractiva de la aplicación" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex flex-col items-end text-right px-4 sm:px-0 z-10 relative">
-        <div className="absolute inset-0 bg-black opacity-50 z-0 transform scale-125"></div>{" "}
-        {/* Capa oscura más grande */}
+        <div className="absolute inset-0 bg-black opacity-50 z-0 transform scale-125"></div>
         <div className="w-full max-w-3xl text-right z-10 relative">
-          {" "}
-          {/* Aumentamos el tamaño del contenedor */}
           <header className="mb-6 z-10 flex justify-end">
-            <h1 className="text-4xl font-bold sm:text-5xl text-white">
-              Horizon Enterprise
-            </h1>
+            <h1 className="text-4xl font-bold sm:text-5xl text-white">Horizon Enterprise</h1>
           </header>
           <div className="w-full max-w-lg text-right z-10 relative">
             <h2 className="text-2xl font-semibold mb-4 sm:text-3xl text-white">
