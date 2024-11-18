@@ -1,9 +1,10 @@
 import { useState } from "react";
 import useDeleteEmployee from "@/services/deleteEmployee"; 
 import AlertDialog from "./AlertDialog";
+import Push from 'push.js';  // Importar Push.js
 
-const DeleteEmployee = ({ id, onDelete }) => { // Mantén el nombre consistente con la convención PascalCase
-  const { deleteEmployee, isLoading } = useDeleteEmployee(); // Consistente con el import
+const DeleteEmployee = ({ id, onDelete }) => {
+  const { deleteEmployee, isLoading } = useDeleteEmployee();
   const [showDialog, setShowDialog] = useState(false);
   const [dialogMessage, setDialogMessage] = useState("");
 
@@ -13,6 +14,17 @@ const DeleteEmployee = ({ id, onDelete }) => { // Mantén el nombre consistente 
     if (success) {
       setDialogMessage("Empleado eliminado correctamente"); 
       onDelete(id);
+
+      // Notificación de éxito usando Push.js
+      Push.create('Empleado eliminado', {
+        body: 'El empleado fue eliminado correctamente',
+        icon: 'assets/img/notificacion.png',  
+        timeout: 3000,  
+        onClick: function() {
+          window.focus();
+          this.close();
+        }
+      });
     } else {
       setDialogMessage("Error al eliminar al empleado.");
     }
@@ -40,4 +52,4 @@ const DeleteEmployee = ({ id, onDelete }) => { // Mantén el nombre consistente 
   );
 };
 
-export default DeleteEmployee; // Consistencia en la exportación
+export default DeleteEmployee;
