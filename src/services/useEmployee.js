@@ -16,7 +16,7 @@ const useEmployee = () => {
           setRecipes(JSON.parse(cachedRecipes));
         }
 
-        const response = await fetch('api-empleados-production.up.railway.app');
+        const response = await fetch('https://api-empleados-production.up.railway.app/api/empleados');
         
         if (!response.ok) {
           throw new Error('Error al obtener los empleados');
